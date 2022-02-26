@@ -1,0 +1,38 @@
+functs [A, B : TYPE] : THEORY
+  BEGIN
+  x, x1, x2 : VAR A
+  y : VAR B
+  f : VAR [A->B]
+
+  
+  injective(f): bool = (FORALL x1, x2: (f(x1) = f(x2) IMPLIES (x1 = x2)))
+  surjective(f): bool = (FORALL y: (EXISTS x: f(x) = y))
+  bijective(f): bool = injective(f) & surjective(f)
+ 
+  END functs
+
+cmp [A, B, C : TYPE] : THEORY
+  BEGIN
+  f1 : VAR [A->B]
+  f2 : VAR [B->C]
+  x : VAR A
+  comp(f2, f1)(x) : C = f2(f1(x))
+  END cmp
+
+ex_2a : THEORY
+  BEGIN
+  importing cmp
+  importing functs
+  X, Y, Z : TYPE+
+  f : [X->Y]
+  h : [Y->Z]
+  ex_21 : LEMMA (surjective(comp(h,f)) and injective(h) IMPLIES surjective(f))
+  END ex_2a
+
+ex_2b : THEORY
+  BEGIN
+  importing functs
+  x, y : VAR real
+  f(x, y) : [real,real] = (2*y, -x)
+  ex_22 : LEMMA (bijective(f))
+  END ex_2b

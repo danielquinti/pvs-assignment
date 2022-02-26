@@ -1,0 +1,14 @@
+parity : THEORY
+  BEGIN
+  k : VAR nat
+  even(x : nat) : bool =(EXISTS k : x =2*k)
+  odd(x : nat): bool = (EXISTS k: x = 2*k+1)
+  END parity
+ex_3 : THEORY
+  BEGIN
+  importing parity
+  n : VAR nat
+  ex_3a : LEMMA(FORALL n : odd(n) or odd(n+1))
+  ex_3b : LEMMA(FORALL n : even(n) iff not odd(n))
+  ex_3c : LEMMA(FORALL n : odd(n) iff not even(n))
+  END ex_3

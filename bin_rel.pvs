@@ -1,0 +1,13 @@
+bin_rel [A : TYPE] : THEORY
+
+  BEGIN
+  R : VAR PRED [[A,A]]
+  a,b,c: VAR A
+  reflexive(R) : bool = FORALL a: R(a, a)
+  transitive(R) : bool = FORALL a, b, c: R(a,b) AND R(b, c) IMPLIES R(a, c)
+  antisymmetric(R) : bool = FORALL a, b: R(a, b) AND R(b, a) => a = b
+  symmetric(R) : bool = FORALL a, b: R(a, b) IMPLIES R(b,a)
+  order(R) : bool = reflexive(R) AND antisymmetric(R) AND transitive(R)
+  equivalence(R) : bool = reflexive(R) AND symmetric(R) AND transitive(R)
+ 
+END bin_rel

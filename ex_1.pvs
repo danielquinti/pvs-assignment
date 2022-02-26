@@ -1,0 +1,6 @@
+ex_1 [ (importing bin_rel) input, output : TYPE] : THEORY
+  BEGIN
+  k : VAR int
+  R: PRED[[nat,nat]] = (lambda (x:nat, y:nat): EXISTS k: x=3*k+y)
+  ex_1a: LEMMA equivalence(R)
+  END ex_1
